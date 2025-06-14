@@ -13,13 +13,18 @@ public class Circle {
     public void update() {
         this.velocity = this.velocity.add(this.acceleration);
         this.position = this.position.add(this.velocity);
+        this.acceleration = new Vector(0, 0); // single frame acceleration?
     }
 
     public void addForce(Vector force) {
-        this.acceleration = force.divide(this.mass);
+        this.acceleration = this.acceleration.add(force.divide(this.mass));
+    }
+
+    public void addFriction(double factor) {
+        this.velocity = this.velocity.scale(factor);
     }
 
     public boolean isCollidingWith(Circle c) {
-        return this.position.distance(c.position) <= this.radius;
+        return this.position.distance(c.position) <= this.radius + c.radius;
     }
 }
