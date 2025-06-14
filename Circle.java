@@ -1,6 +1,5 @@
 public class Circle {
-    double radius;
-    double mass;
+    double radius, mass;
     Vector position, velocity, acceleration;
 
     Circle(double mass, double x, double y, double radius) {
